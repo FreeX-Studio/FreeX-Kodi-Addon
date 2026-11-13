@@ -1,0 +1,291 @@
+# FreeX for Kodi
+# Copyright (c) 2026 MirraNET, Niklas Linz. LGPL-3.0.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+
+msgctxt "#30001"
+msgid "Home"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Watchlist"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Playlists"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Sign in"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Sign out"
+msgstr ""
+
+msgctxt "#30008"
+msgid "All"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Unwatched"
+msgstr ""
+
+msgctxt "#30010"
+msgid "In progress"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Recently added"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Collections"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Genres"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Years"
+msgstr ""
+
+msgctxt "#30017"
+msgid "Extras"
+msgstr ""
+
+msgctxt "#30018"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Mark as watched"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Mark as unwatched"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Add to watchlist"
+msgstr ""
+
+msgctxt "#30033"
+msgid "Remove from watchlist"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Go to show"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Go to season"
+msgstr ""
+
+msgctxt "#30037"
+msgid "Try again"
+msgstr ""
+
+msgctxt "#30038"
+msgid "Play from the start"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Server address (e.g. 192.168.1.10 or https://media.example.org)"
+msgstr ""
+
+msgctxt "#30051"
+msgid "User name"
+msgstr ""
+
+msgctxt "#30052"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Code from your authenticator app (or a recovery code)"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Signed in as {0}"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Signed out"
+msgstr ""
+
+msgctxt "#30056"
+msgid "The server cannot be reached"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Please enter the server address in the settings first"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Not signed in"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Search FreeX"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Nothing found"
+msgstr ""
+
+msgctxt "#30061"
+msgid "No extras"
+msgstr ""
+
+msgctxt "#30063"
+msgid "The sign-in has expired; please sign in again"
+msgstr ""
+
+msgctxt "#30070"
+msgid "Skip intro"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Next episode"
+msgstr ""
+
+msgctxt "#32000"
+msgid "Server"
+msgstr ""
+
+msgctxt "#32001"
+msgid "Server address"
+msgstr ""
+
+msgctxt "#32002"
+msgid "User name"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Sign in…"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Sign out"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Check the server's TLS certificate"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Playback"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Playback mode"
+msgstr ""
+
+msgctxt "#32012"
+msgid "Direct play (Kodi plays every file as it is)"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Let the server decide (converts when needed)"
+msgstr ""
+
+msgctxt "#32014"
+msgid "Quality"
+msgstr ""
+
+msgctxt "#32015"
+msgid "Automatic (your default in FreeX)"
+msgstr ""
+
+msgctxt "#32016"
+msgid "Original"
+msgstr ""
+
+msgctxt "#32017"
+msgid "20 Mbit/s 1080p"
+msgstr ""
+
+msgctxt "#32018"
+msgid "12 Mbit/s 1080p"
+msgstr ""
+
+msgctxt "#32019"
+msgid "8 Mbit/s 1080p"
+msgstr ""
+
+msgctxt "#32020"
+msgid "4 Mbit/s 720p"
+msgstr ""
+
+msgctxt "#32021"
+msgid "2 Mbit/s 720p"
+msgstr ""
+
+msgctxt "#32022"
+msgid "1 Mbit/s 480p"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Skip intro"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Show a button"
+msgstr ""
+
+msgctxt "#32025"
+msgid "Skip automatically"
+msgstr ""
+
+msgctxt "#32026"
+msgid "Off"
+msgstr ""
+
+msgctxt "#32027"
+msgid "Use Up Next for the next episode (if installed)"
+msgstr ""
+
+msgctxt "#32028"
+msgid "Show \"Next episode\" during the credits"
+msgstr ""
+
+msgctxt "#32029"
+msgid "Play the next episode when one ends"
+msgstr ""
+
+msgctxt "#32030"
+msgid "Menu"
+msgstr ""
+
+msgctxt "#32031"
+msgid "Show the home rows directly in the main menu"
+msgstr ""
+
+msgctxt "#32032"
+msgid "Skip the season list for shows with only one season"
+msgstr ""
+
+msgctxt "#32033"
+msgid "Device name in FreeX (empty: Kodi on <device>)"
+msgstr ""
+
+msgctxt "#32034"
+msgid "This device decodes HEVC (H.265)"
+msgstr ""
+
+msgctxt "#32035"
+msgid "This device decodes AV1"
+msgstr ""
+
+msgctxt "#32036"
+msgid "Play converted streams with InputStream Adaptive"
+msgstr ""

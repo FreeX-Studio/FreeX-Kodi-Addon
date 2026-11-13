@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+    <category label="32000">
+        <setting id="server" type="text" label="32001" default=""/>
+        <setting id="username" type="text" label="32002" default=""/>
+        <setting label="32003" type="action" action="RunPlugin(plugin://plugin.video.freex/?action=login)" option="close"/>
+        <setting label="32004" type="action" action="RunPlugin(plugin://plugin.video.freex/?action=logout)" option="close"/>
+        <setting id="verify_tls" type="bool" label="32005" default="true"/>
+        <setting id="device_name" type="text" label="32033" default=""/>
+    </category>
+    <category label="32010">
+        <setting id="play_mode" type="enum" label="32011" lvalues="32012|32013" default="0"/>
+        <setting id="quality" type="enum" label="32014" lvalues="32015|32016|32017|32018|32019|32020|32021|32022" default="0" visible="eq(-1,1)"/>
+        <setting id="decode_hevc" type="bool" label="32034" default="true" visible="eq(-2,1)"/>
+        <setting id="decode_av1" type="bool" label="32035" default="true" visible="eq(-3,1)"/>
+        <setting id="inputstream" type="bool" label="32036" default="false" visible="eq(-4,1)"/>
+        <setting type="sep"/>
+        <setting id="intro_mode" type="enum" label="32023" lvalues="32024|32025|32026" default="0"/>
+        <setting id="upnext" type="bool" label="32027" default="true"/>
+        <setting id="next_button" type="bool" label="32028" default="true"/>
+        <setting id="autoplay_next" type="bool" label="32029" default="true"/>
+    </category>
+    <category label="32030">
+        <setting id="hubs_in_root" type="bool" label="32031" default="true"/>
+        <setting id="flatten_seasons" type="bool" label="32032" default="true"/>
+    </category>
+</settings>

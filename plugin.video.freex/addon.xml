@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.freex" name="FreeX" version="1.0.0" provider-name="MirraNET, Niklas Linz">
+    <requires>
+        <import addon="xbmc.python" version="3.0.1"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Your FreeX Media Server in Kodi</summary>
+        <summary lang="de_DE">Dein FreeX Media Server in Kodi</summary>
+        <description lang="en_GB">Browse the movies and shows of your FreeX Media Server and play them with Kodi's own player. Home rows (Continue watching, Up next, Recently added), libraries with filters, collections, playlists, watchlist and search. Kodi plays almost every file directly; watch state and resume positions are kept on the server, so they follow you to FreeX Web and all other FreeX apps. Skip intro and Up Next for episodes.</description>
+        <description lang="de_DE">Durchsuche die Filme und Serien deines FreeX Media Servers und spiele sie mit Kodis eigenem Player ab. Startseiten-Reihen (Weiterschauen, Als Nächstes, Neu hinzugefügt), Bibliotheken mit Filtern, Sammlungen, Playlists, Merkliste und Suche. Kodi spielt fast jede Datei direkt ab; Gesehen-Status und Fortsetzungspunkte liegen auf dem Server und folgen dir zu FreeX Web und allen anderen FreeX-Apps. Intro überspringen und Up Next für Episoden.</description>
+        <platform>all</platform>
+        <license>LGPL-3.0-only</license>
+        <website>https://github.com/FreeX-Studio/freex-media-server</website>
+        <source>https://github.com/FreeX-Studio/FreeX-Kodi-Addon</source>
+        <email>niklas.linz@mirranet.de</email>
+        <news>1.0.0: first version</news>
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            <fanart>resources/media/fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>

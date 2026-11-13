@@ -1,0 +1,291 @@
+# FreeX for Kodi
+# Copyright (c) 2026 MirraNET, Niklas Linz. LGPL-3.0.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+
+msgctxt "#30001"
+msgid "Home"
+msgstr "Startseite"
+
+msgctxt "#30002"
+msgid "Watchlist"
+msgstr "Merkliste"
+
+msgctxt "#30003"
+msgid "Playlists"
+msgstr "Playlists"
+
+msgctxt "#30004"
+msgid "Search"
+msgstr "Suche"
+
+msgctxt "#30005"
+msgid "Sign in"
+msgstr "Anmelden"
+
+msgctxt "#30006"
+msgid "Sign out"
+msgstr "Abmelden"
+
+msgctxt "#30008"
+msgid "All"
+msgstr "Alle"
+
+msgctxt "#30009"
+msgid "Unwatched"
+msgstr "Ungesehen"
+
+msgctxt "#30010"
+msgid "In progress"
+msgstr "Angefangen"
+
+msgctxt "#30011"
+msgid "Recently added"
+msgstr "Neu hinzugefügt"
+
+msgctxt "#30012"
+msgid "Collections"
+msgstr "Sammlungen"
+
+msgctxt "#30013"
+msgid "Genres"
+msgstr "Genres"
+
+msgctxt "#30014"
+msgid "Years"
+msgstr "Jahre"
+
+msgctxt "#30017"
+msgid "Extras"
+msgstr "Extras"
+
+msgctxt "#30018"
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgctxt "#30030"
+msgid "Mark as watched"
+msgstr "Als gesehen markieren"
+
+msgctxt "#30031"
+msgid "Mark as unwatched"
+msgstr "Als ungesehen markieren"
+
+msgctxt "#30032"
+msgid "Add to watchlist"
+msgstr "Zur Merkliste hinzufügen"
+
+msgctxt "#30033"
+msgid "Remove from watchlist"
+msgstr "Von der Merkliste entfernen"
+
+msgctxt "#30034"
+msgid "Go to show"
+msgstr "Zur Serie"
+
+msgctxt "#30035"
+msgid "Go to season"
+msgstr "Zur Staffel"
+
+msgctxt "#30037"
+msgid "Try again"
+msgstr "Erneut versuchen"
+
+msgctxt "#30038"
+msgid "Play from the start"
+msgstr "Von vorne abspielen"
+
+msgctxt "#30050"
+msgid "Server address (e.g. 192.168.1.10 or https://media.example.org)"
+msgstr "Serveradresse (z. B. 192.168.1.10 oder https://media.example.org)"
+
+msgctxt "#30051"
+msgid "User name"
+msgstr "Benutzername"
+
+msgctxt "#30052"
+msgid "Password"
+msgstr "Passwort"
+
+msgctxt "#30053"
+msgid "Code from your authenticator app (or a recovery code)"
+msgstr "Code aus deiner Authenticator-App (oder ein Wiederherstellungscode)"
+
+msgctxt "#30054"
+msgid "Signed in as {0}"
+msgstr "Angemeldet als {0}"
+
+msgctxt "#30055"
+msgid "Signed out"
+msgstr "Abgemeldet"
+
+msgctxt "#30056"
+msgid "The server cannot be reached"
+msgstr "Der Server ist nicht erreichbar"
+
+msgctxt "#30057"
+msgid "Please enter the server address in the settings first"
+msgstr "Bitte trage zuerst die Serveradresse in den Einstellungen ein"
+
+msgctxt "#30058"
+msgid "Not signed in"
+msgstr "Nicht angemeldet"
+
+msgctxt "#30059"
+msgid "Search FreeX"
+msgstr "FreeX durchsuchen"
+
+msgctxt "#30060"
+msgid "Nothing found"
+msgstr "Nichts gefunden"
+
+msgctxt "#30061"
+msgid "No extras"
+msgstr "Keine Extras"
+
+msgctxt "#30063"
+msgid "The sign-in has expired; please sign in again"
+msgstr "Die Anmeldung ist abgelaufen; bitte melde dich erneut an"
+
+msgctxt "#30070"
+msgid "Skip intro"
+msgstr "Intro überspringen"
+
+msgctxt "#30071"
+msgid "Next episode"
+msgstr "Nächste Episode"
+
+msgctxt "#32000"
+msgid "Server"
+msgstr "Server"
+
+msgctxt "#32001"
+msgid "Server address"
+msgstr "Serveradresse"
+
+msgctxt "#32002"
+msgid "User name"
+msgstr "Benutzername"
+
+msgctxt "#32003"
+msgid "Sign in…"
+msgstr "Anmelden …"
+
+msgctxt "#32004"
+msgid "Sign out"
+msgstr "Abmelden"
+
+msgctxt "#32005"
+msgid "Check the server's TLS certificate"
+msgstr "TLS-Zertifikat des Servers prüfen"
+
+msgctxt "#32010"
+msgid "Playback"
+msgstr "Wiedergabe"
+
+msgctxt "#32011"
+msgid "Playback mode"
+msgstr "Wiedergabemodus"
+
+msgctxt "#32012"
+msgid "Direct play (Kodi plays every file as it is)"
+msgstr "Direktwiedergabe (Kodi spielt jede Datei so, wie sie ist)"
+
+msgctxt "#32013"
+msgid "Let the server decide (converts when needed)"
+msgstr "Server entscheiden lassen (wandelt bei Bedarf um)"
+
+msgctxt "#32014"
+msgid "Quality"
+msgstr "Qualität"
+
+msgctxt "#32015"
+msgid "Automatic (your default in FreeX)"
+msgstr "Automatisch (deine Vorgabe in FreeX)"
+
+msgctxt "#32016"
+msgid "Original"
+msgstr "Original"
+
+msgctxt "#32017"
+msgid "20 Mbit/s 1080p"
+msgstr "20 Mbit/s 1080p"
+
+msgctxt "#32018"
+msgid "12 Mbit/s 1080p"
+msgstr "12 Mbit/s 1080p"
+
+msgctxt "#32019"
+msgid "8 Mbit/s 1080p"
+msgstr "8 Mbit/s 1080p"
+
+msgctxt "#32020"
+msgid "4 Mbit/s 720p"
+msgstr "4 Mbit/s 720p"
+
+msgctxt "#32021"
+msgid "2 Mbit/s 720p"
+msgstr "2 Mbit/s 720p"
+
+msgctxt "#32022"
+msgid "1 Mbit/s 480p"
+msgstr "1 Mbit/s 480p"
+
+msgctxt "#32023"
+msgid "Skip intro"
+msgstr "Intro überspringen"
+
+msgctxt "#32024"
+msgid "Show a button"
+msgstr "Schaltfläche zeigen"
+
+msgctxt "#32025"
+msgid "Skip automatically"
+msgstr "Automatisch überspringen"
+
+msgctxt "#32026"
+msgid "Off"
+msgstr "Aus"
+
+msgctxt "#32027"
+msgid "Use Up Next for the next episode (if installed)"
+msgstr "Up Next für die nächste Episode nutzen (falls installiert)"
+
+msgctxt "#32028"
+msgid "Show \"Next episode\" during the credits"
+msgstr "Während des Abspanns \"Nächste Episode\" zeigen"
+
+msgctxt "#32029"
+msgid "Play the next episode when one ends"
+msgstr "Nächste Episode abspielen, wenn eine endet"
+
+msgctxt "#32030"
+msgid "Menu"
+msgstr "Menü"
+
+msgctxt "#32031"
+msgid "Show the home rows directly in the main menu"
+msgstr "Reihen der Startseite direkt im Hauptmenü zeigen"
+
+msgctxt "#32032"
+msgid "Skip the season list for shows with only one season"
+msgstr "Staffelliste bei Serien mit nur einer Staffel überspringen"
+
+msgctxt "#32033"
+msgid "Device name in FreeX (empty: Kodi on <device>)"
+msgstr "Gerätename in FreeX (leer: Kodi on <Gerät>)"
+
+msgctxt "#32034"
+msgid "This device decodes HEVC (H.265)"
+msgstr "Dieses Gerät dekodiert HEVC (H.265)"
+
+msgctxt "#32035"
+msgid "This device decodes AV1"
+msgstr "Dieses Gerät dekodiert AV1"
+
+msgctxt "#32036"
+msgid "Play converted streams with InputStream Adaptive"
+msgstr "Umgewandelte Streams mit InputStream Adaptive abspielen"
