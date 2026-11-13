@@ -265,10 +265,6 @@ def context_menu(it, context=""):
         menu.append((tr(30034), update(action="show", id=it["showId"], all="1")))
     if t == "extra" and it.get("ownerId") and context != "extras":
         menu.append((it.get("ownerTitle") or tr(30017), update(action="item", id=it["ownerId"])))
-    if playable(it):
-        p = it.get("progress") or {}
-        if p.get("offsetMs") and not p.get("watched"):
-            menu.append((tr(30038), "PlayMedia(%s)" % plugin_url(action="play", id=it["id"], start="0")))
     return menu
 
 

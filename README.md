@@ -14,14 +14,25 @@ in Kodi's own player, which decodes practically every file, so the server conver
 positions stay on the server: what you start in Kodi continues in FreeX Web, FreeX TV or FreeX Mobile, and the other
 way round.
 
+<p align="center">
+  <img src="docs/screenshots/main-menu.jpg" width="49%" alt="Main menu with the server's home rows">
+  <img src="docs/screenshots/movies.jpg" width="49%" alt="A movie library in Kodi's poster view">
+  <img src="docs/screenshots/episodes.jpg" width="49%" alt="Episodes with watched and in-progress marks">
+  <img src="docs/screenshots/skip-intro.jpg" width="49%" alt="The Skip intro button during playback">
+</p>
+
+<sub>Kodi 20.5 with the Estuary skin in German, against a FreeX Media Server with test media. More in
+<a href="docs/screenshots">docs/screenshots</a>.</sub>
+
 ## Features
 
 - **Browse** – the server's home rows (*Continue watching*, *Up next*, *Recently added* …) right in the main menu;
   per library *All*, *Unwatched*, *In progress*, *Recently added*, the library's rows, collections, genres and
   decades; watchlist, playlists and search
-- **Like a Kodi library** – posters, backdrops and episode thumbnails, plot, genres, rating, age rating, studio,
-  directors, writers and cast with photos; resolution, codecs, HDR, audio and subtitle languages as media flags;
-  watched marks, unwatched episode counts and resume points; Kodi's sort orders (title, year, rating, added, length)
+- **Like a Kodi library** – posters, backdrops and episode thumbnails, plot, genres and rating; resolution, codecs,
+  HDR, audio and subtitle languages as media flags; watched marks, unwatched episode counts and resume points;
+  Kodi's sort orders (title, year, rating, added, length). Cast with photos, directors, writers, studio and age
+  rating come with a title's full details, so Kodi shows them while it plays (the server's lists do not carry them)
 - **Plays everything** – direct play by default (the file as it is, with seeking); optionally the server decides and
   converts what the device cannot decode or limits the quality for slow connections
 - **Synced** – the position is reported every ten seconds and on pause, seek and stop; 90 % counts as watched, the

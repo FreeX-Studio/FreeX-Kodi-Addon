@@ -38,9 +38,24 @@ PLAYING_PROPERTY = "freex.playing"
 HOME_WINDOW = 10000
 
 
+_settings = None
+
+
 def addon():
-    """A fresh Addon object: the service runs for hours and must see changed settings."""
-    return xbmcaddon.Addon(ADDON_ID)
+    """
+    The Addon object the settings are read from. Creating one reads settings.xml from disk, which
+    takes long on small devices, so it is kept; the service calls reload_settings() when Kodi
+    reports changed settings.
+    """
+    global _settings  # pylint: disable=global-statement
+    if _settings is None:
+        _settings = xbmcaddon.Addon(ADDON_ID)
+    return _settings
+
+
+def reload_settings():
+    global _settings  # pylint: disable=global-statement
+    _settings = None
 
 
 def tr(string_id, *args):
@@ -71,7 +86,7 @@ def setting_int(key, default=0):
 
 
 def set_setting(key, value):
-    ADDON.setSetting(key, value)
+    addon().setSetting(key, value)
 
 
 def notify(msg, error=False, ms=4000):

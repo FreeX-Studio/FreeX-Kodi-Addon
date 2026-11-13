@@ -44,6 +44,7 @@ class Plugin:
         self.handle = int(argv[1])
         self.params = dict(parse_qsl(argv[2].lstrip("?"))) if len(argv) > 2 else {}
         self._api = None
+        self._sorted = False
 
     @property
     def api(self):
@@ -83,6 +84,9 @@ class Plugin:
             xbmcplugin.endOfDirectory(self.handle, succeeded=False)
 
     def end(self, ok=True, cache=False):
+        if ok and not self._sorted and self.handle >= 0:
+            # Menus keep the order they are built in (Kodi would otherwise sort them by date).
+            xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_UNSORTED)
         xbmcplugin.endOfDirectory(self.handle, succeeded=ok, cacheToDisc=cache)
 
     def add(self, entries):
@@ -92,6 +96,7 @@ class Plugin:
         xbmcplugin.setContent(self.handle, kind)
 
     def sorts(self, *methods):
+        self._sorted = True
         for m in methods:
             xbmcplugin.addSortMethod(self.handle, m)
 
@@ -164,7 +169,8 @@ class Plugin:
     def hub_folders(self, hubs, library_id=None):
         out = []
         for hub in hubs or []:
-            if not hub.get("items"):
+            # The watchlist has its own entry in the main menu.
+            if not hub.get("items") or hub.get("key") == "watchlist":
                 continue
             icon = hub["items"][0]
             art = {"thumb": self.api.art(icon, "poster" if icon.get("type") != "episode" else "thumb"),
@@ -218,7 +224,7 @@ class Plugin:
         res = self.api.library_items(self.params["id"])
         self.add([folder(g, plugin_url(action="items", id=self.params["id"], sort="title", genre=g), "DefaultGenre.png")
                   for g in res.get("genres") or []])
-        xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_LABEL)
+        self.sorts(xbmcplugin.SORT_METHOD_LABEL)
         self.end()
 
     def do_years(self):
@@ -243,7 +249,7 @@ class Plugin:
             entries.append((url, li, True))
         self.add(entries)
         self.content("sets")
-        xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+        self.sorts(xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
         self.end()
 
     def do_collection(self):
@@ -401,14 +407,15 @@ class Plugin:
         if subs:
             li.setSubtitles(subs)
 
-        if self.params.get("start") == "0":
-            li.getVideoInfoTag().setResumePoint(0, utils.ms_to_s((it.get("media") or {}).get("durationMs")))
-            li.setProperty("StartOffset", "0")
+        # Where to start is decided by Kodi's own resume dialog on the list item; a resume point on
+        # the resolved item would make Kodi resume even after "from the beginning" was chosen.
+        li.getVideoInfoTag().setResumePoint(0, utils.ms_to_s((it.get("media") or {}).get("durationMs")))
 
         nxt = it.get("next")
         info = {
             "itemId": it["id"], "type": it.get("type"), "title": it.get("title"), "showTitle": it.get("showTitle"),
-            "server": api.server, "url": plan["url"], "session": plan.get("session"), "mode": plan.get("mode"),
+            "server": api.server, "url": plan["url"], "token": cast_token(plan["url"]),
+            "session": plan.get("session"), "mode": plan.get("mode"),
             "durationMs": plan.get("durationMs") or (it.get("media") or {}).get("durationMs") or 0,
             "markers": it.get("markers") or {}, "next": compact(nxt) if nxt else None, "current": compact(it),
         }
@@ -445,6 +452,16 @@ class Plugin:
             except (ApiError, OSError) as e:
                 utils.log("Subtitle %s: %s" % (s.get("id"), e), xbmc.LOGWARNING)
         return out
+
+
+def cast_token(url):
+    """The "/api/cast/<token>/" part of a stream URL: it is new for every playback."""
+    parts = url.split("/")
+    try:
+        i = parts.index("cast")
+        return "/".join(parts[:i + 2]) + "/"
+    except ValueError:
+        return url
 
 
 def compact(it):

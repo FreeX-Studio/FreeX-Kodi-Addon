@@ -77,6 +77,11 @@ class SkipButton(xbmcgui.WindowDialog):
             xbmc.Player().pause()
 
 
+class Monitor(xbmc.Monitor):
+    def onSettingsChanged(self):  # noqa: N802
+        utils.reload_settings()
+
+
 class Player(xbmc.Player):
     def __init__(self, svc):
         super().__init__()
@@ -92,7 +97,7 @@ class Player(xbmc.Player):
         self.svc.report("playing", force=True)
 
     def onPlayBackSeek(self, time, seek_offset):  # noqa: N802 pylint: disable=redefined-outer-name,unused-argument
-        self.svc.position_ms = max(0, int(time))
+        self.svc.seeked = True
         self.svc.report("playing", force=True)
 
     def onPlayBackStopped(self):  # noqa: N802
@@ -107,7 +112,7 @@ class Player(xbmc.Player):
 
 class Service:
     def __init__(self):
-        self.monitor = xbmc.Monitor()
+        self.monitor = Monitor()
         self.player = Player(self)
         self.lock = threading.RLock()
         self.current = None
@@ -117,6 +122,9 @@ class Service:
         self.button_kind = None
         self.dismissed = set()
         self.now = 0.0
+        # Set while Kodi changes to the next title: the position of the old one is final.
+        self.frozen = False
+        self.seeked = False
 
     # ------------------------------------------------------------------ start and end
 
@@ -140,6 +148,8 @@ class Service:
                 return  # not ours
             self.current = info
             self.position_ms = 0
+            self.frozen = False
+            self.seeked = False
             self.dismissed = set()
             utils.log("Following %s (%s)" % (info.get("itemId"), info.get("mode")))
         self.report("playing", force=True)
@@ -209,10 +219,33 @@ class Service:
         except ApiError as e:
             utils.log("Progress report failed: %s" % e.message)
 
+    def is_ours(self):
+        """
+        Whether Kodi still plays the file the service follows. When the next title starts, Kodi
+        plays it for a moment before it reports the start; its position must not end up on the
+        previous one. Every playback has its own token in the URL, which tells them apart.
+        """
+        cur = self.current
+        if not cur:
+            return False
+        try:
+            playing = self.player.getPlayingFile()
+        except RuntimeError:
+            return False
+        marker = cur.get("token") or cur.get("url") or ""
+        return bool(marker) and marker in playing
+
     def read_position(self):
+        if self.frozen or not self.is_ours():
+            return
         try:
             if self.player.isPlayingVideo():
-                self.position_ms = int(self.player.getTime() * 1000)
+                pos = max(0, int(self.player.getTime() * 1000))
+                if pos < 1000 < self.position_ms and not self.seeked:
+                    # Kodi is opening the next file and still names the old one: not a real position.
+                    return
+                self.seeked = False
+                self.position_ms = pos
                 if self.current and not self.current.get("durationMs"):
                     self.current["durationMs"] = int(self.player.getTotalTime() * 1000)
         except RuntimeError:
@@ -297,6 +330,8 @@ class Service:
         if kind == "intro":
             self.skip_intro()
         elif kind == "next" and self.current and self.current.get("next"):
+            self.read_position()
+            self.frozen = True
             self.play(self.current["next"]["id"])
 
     def skip_intro(self):
