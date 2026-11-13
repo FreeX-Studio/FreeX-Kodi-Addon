@@ -1,5 +1,17 @@
 # Changelog
 
+## FreeX for Kodi 1.1.0
+
+- FreeX opens in its own design, the one of FreeX TV and FreeX Web, independent of Kodi's skin: a sidebar
+  with home, watchlist, playlists, search and the libraries; the home rows as rows of rounded cards with
+  progress bars, "unwatched" corners and episode counts; libraries as a grid with filters (all, unwatched,
+  in progress, recently added, collections); detail pages for movies, shows, seasons and episodes with the
+  backdrop, a "Resume S1 E3" button in the brand gradient, buttons for from the start, watched and
+  watchlist, seasons, episodes, extras and cast
+- Playback started there resumes at the saved position; when it ends, the pages show the new state
+- "Skip intro" and "Next episode" buttons in the same look
+- Kodi's lists remain: setting *Menu → Open FreeX in its own design*
+
 ## FreeX for Kodi 1.0.0
 
 First version of the Kodi add-on for FreeX Media Server (Kodi 20 Nexus and newer):

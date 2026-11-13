@@ -35,6 +35,8 @@ STATE_FILE = os.path.join(PROFILE, "state.json")
 
 # Window property through which the plugin tells the service what is being played.
 PLAYING_PROPERTY = "freex.playing"
+# Set by the service once the final position of a playback is on the server.
+SAVED_PROPERTY = "freex.saved"
 HOME_WINDOW = 10000
 
 

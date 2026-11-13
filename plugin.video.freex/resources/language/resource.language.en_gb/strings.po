@@ -94,10 +94,6 @@ msgctxt "#30037"
 msgid "Try again"
 msgstr ""
 
-msgctxt "#30038"
-msgid "Play from the start"
-msgstr ""
-
 msgctxt "#30050"
 msgid "Server address (e.g. 192.168.1.10 or https://media.example.org)"
 msgstr ""
@@ -156,6 +152,78 @@ msgstr ""
 
 msgctxt "#30071"
 msgid "Next episode"
+msgstr ""
+
+msgctxt "#30098"
+msgid "1 season"
+msgstr ""
+
+msgctxt "#30099"
+msgid "1 episode"
+msgstr ""
+
+msgctxt "#30080"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#30081"
+msgid "Play"
+msgstr ""
+
+msgctxt "#30083"
+msgid "Seasons"
+msgstr ""
+
+msgctxt "#30084"
+msgid "Episodes"
+msgstr ""
+
+msgctxt "#30085"
+msgid "Cast"
+msgstr ""
+
+msgctxt "#30087"
+msgid "{0} episodes"
+msgstr ""
+
+msgctxt "#30088"
+msgid "{0} seasons"
+msgstr ""
+
+msgctxt "#30089"
+msgid "Ends at {0}"
+msgstr ""
+
+msgctxt "#30090"
+msgid "Director"
+msgstr ""
+
+msgctxt "#30091"
+msgid "Writer"
+msgstr ""
+
+msgctxt "#30092"
+msgid "Video"
+msgstr ""
+
+msgctxt "#30093"
+msgid "Audio"
+msgstr ""
+
+msgctxt "#30094"
+msgid "Subtitles"
+msgstr ""
+
+msgctxt "#30095"
+msgid "Season {0}"
+msgstr ""
+
+msgctxt "#30096"
+msgid "Nothing here yet"
+msgstr ""
+
+msgctxt "#30097"
+msgid "Close"
 msgstr ""
 
 msgctxt "#32000"
@@ -288,4 +356,8 @@ msgstr ""
 
 msgctxt "#32036"
 msgid "Play converted streams with InputStream Adaptive"
+msgstr ""
+
+msgctxt "#32037"
+msgid "Open FreeX in its own design (otherwise Kodi's lists)"
 msgstr ""

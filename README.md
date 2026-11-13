@@ -15,17 +15,22 @@ positions stay on the server: what you start in Kodi continues in FreeX Web, Fre
 way round.
 
 <p align="center">
-  <img src="docs/screenshots/main-menu.jpg" width="49%" alt="Main menu with the server's home rows">
-  <img src="docs/screenshots/movies.jpg" width="49%" alt="A movie library in Kodi's poster view">
-  <img src="docs/screenshots/episodes.jpg" width="49%" alt="Episodes with watched and in-progress marks">
-  <img src="docs/screenshots/skip-intro.jpg" width="49%" alt="The Skip intro button during playback">
+  <img src="docs/screenshots/home.jpg" width="49%" alt="Home rows in the FreeX design">
+  <img src="docs/screenshots/library.jpg" width="49%" alt="A library with filters">
+  <img src="docs/screenshots/show.jpg" width="49%" alt="The page of a show with Resume S1 E1">
+  <img src="docs/screenshots/season.jpg" width="49%" alt="The episodes of a season">
 </p>
 
-<sub>Kodi 20.5 with the Estuary skin in German, against a FreeX Media Server with test media. More in
+<sub>Kodi 20.5 in German against a FreeX Media Server with test media (titles and posters made up). More in
 <a href="docs/screenshots">docs/screenshots</a>.</sub>
 
 ## Features
 
+- **The FreeX design** – the add-on opens in windows of its own that look like FreeX TV and FreeX Web, whatever
+  skin Kodi uses: the sidebar, the home rows as rows of rounded cards with progress bars, "unwatched" corners
+  and episode counts, the backdrop of the focused title, libraries as a grid with filters, detail pages with the
+  *Resume S1 E3* button in the brand gradient, from-the-start, watched and watchlist buttons, seasons,
+  episodes, extras and cast. Kodi's own lists (below) remain, for the skin's widgets and as a setting
 - **Browse** – the server's home rows (*Continue watching*, *Up next*, *Recently added* …) right in the main menu;
   per library *All*, *Unwatched*, *In progress*, *Recently added*, the library's rows, collections, genres and
   decades; watchlist, playlists and search
@@ -83,13 +88,17 @@ The add-on is updated by installing a newer zip the same way.
 | Use Up Next | on | Hand the next episode to Up Next when it is installed |
 | Show "Next episode" during the credits | on | Without Up Next |
 | Play the next episode when one ends | on | Without Up Next |
-| Show the home rows directly in the main menu | on | Otherwise behind *Home* |
+| Open FreeX in its own design | on | Off: the add-on shows Kodi's lists in the skin's look (as in [this picture](docs/screenshots/classic-list.jpg)) |
+| Show the home rows directly in the main menu | on | Kodi's lists: otherwise behind *Home* |
 | Skip the season list for shows with only one season | on | |
 
 ## How it works
 
-The add-on has two parts:
+The add-on has three parts:
 
+- **The FreeX windows** (`ui.py`, started by the plugin when the add-on is opened) are Kodi script windows
+  (`WindowXML`) with their own layout in `resources/skins/Default/1080i`, so they look the same in every
+  skin. They read the same JSON API and start the player directly, at the saved position.
 - **The plugin** (`default.py`) is run by Kodi for every folder. It reads the folder fresh from the server's JSON API
   (`/api/hubs`, `/api/libraries/{id}/items`, `/api/items/{id}` …), so changes made in other apps show at once.
   Artwork is loaded by Kodi's image loader with the token in a header (`url|X-FreeX-Token=…`). For playback it asks
@@ -116,10 +125,18 @@ Python 3.8+ without third-party modules (Kodi 20 ships 3.8 on some platforms). T
 |---|---|
 | `api.py` | The API client (`urllib`, token header, errors with the server's `code`) |
 | `session.py` | Sign-in with two-factor authentication, the client of the signed-in user |
-| `plugin.py` | Menus, lists and playback |
+| `ui.py` | The FreeX windows: sidebar, home rows, grid, detail pages |
+| `plugin.py` | Kodi's lists (menus, folders) and resolving playback |
+| `playback.py` | Asking the server how to play a title, subtitles, starting the player |
 | `items.py` | FreeX items as Kodi list items: info, artwork, watch state, stream details, context menu |
 | `service.py` | Progress reports, skip intro, next episode, Up Next |
 | `utils.py` | Settings, strings, state file |
+
+The window layouts (`resources/skins/Default/1080i/*.xml`) and their textures (`resources/skins/Default/media`)
+are generated: change `tools/make_windows.py` or `tools/make_media.py` and run them (`python3 tools/make_windows.py`;
+`python3 tools/make_media.py <path to FreeX-TV-Apps/web/img/logo.svg>`, needs Pillow and cairosvg). The layouts use
+the colours of FreeX Web and the fonts every skin has (`font12`, `font13`) plus a few of Estuary's larger ones;
+other skins fall back to `font13` there.
 
 Strings are in `resources/language/resource.language.*/strings.po`; IDs 30000–30999 for the add-on, 32000–32999
 for the settings.

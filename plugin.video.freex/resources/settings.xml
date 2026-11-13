@@ -21,6 +21,7 @@
         <setting id="autoplay_next" type="bool" label="32029" default="true"/>
     </category>
     <category label="32030">
+        <setting id="freex_ui" type="bool" label="32037" default="true"/>
         <setting id="hubs_in_root" type="bool" label="32031" default="true"/>
         <setting id="flatten_seasons" type="bool" label="32032" default="true"/>
     </category>

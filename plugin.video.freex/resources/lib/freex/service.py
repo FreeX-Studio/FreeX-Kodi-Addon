@@ -37,40 +37,36 @@ TICK_S = 0.5
 # Without a credits marker, "Next episode" appears this long before the end.
 NEXT_WITHOUT_MARKER_MS = 30000
 
-ACTION_SELECT = (7, 100)  # select, left click
 ACTION_BACK = (9, 10, 92, 110)  # parent dir, previous menu, back, nav back
 ACTION_PAUSE = (12, 79)  # pause, player play
 
 
-class SkipButton(xbmcgui.WindowDialog):
-    """A single button at the bottom right over the video; OK presses it, Back hides it."""
+class SkipButton(xbmcgui.WindowXMLDialog):
+    """
+    A single button at the bottom right over the video, in the look of the FreeX windows
+    (resources/skins/Default/1080i/freex-skip.xml). OK presses it, Back hides it.
+    """
 
-    def __init__(self, label, on_press):
-        super().__init__()
+    def __new__(cls, *args, **kwargs):  # pylint: disable=unused-argument
+        return super().__new__(cls, "freex-skip.xml", utils.ADDON_PATH, "Default", "1080i")
+
+    def __init__(self, label, icon, on_press):  # pylint: disable=super-init-not-called
         self.on_press = on_press
         self.dismissed = False
-        media = utils.ADDON_PATH + "/resources/media/"
-        self.button = xbmcgui.ControlButton(
-            960, 590, 280, 70, label, focusTexture=media + "button-focus.png", noFocusTexture=media + "button-nofocus.png",
-            alignment=0x00000002 | 0x00000004, textColor="0xFF101018", focusedColor="0xFF101018",
-            font="font13")
-        self.addControl(self.button)
-        self.setFocus(self.button)
+        self.setProperty("label", label)
+        self.setProperty("icon", icon)
 
-    def set_label(self, label):
-        self.button.setLabel(label)
+    def onInit(self):  # noqa: N802
+        self.setFocusId(10)
 
-    def onControl(self, control):  # noqa: N802 (Kodi's name)
-        if control == self.button:
+    def onClick(self, control_id):  # noqa: N802
+        if control_id == 10:
             self.close()
             self.on_press()
 
     def onAction(self, action):  # noqa: N802
         aid = action.getId()
-        if aid in ACTION_SELECT:
-            self.close()
-            self.on_press()
-        elif aid in ACTION_BACK:
+        if aid in ACTION_BACK:
             self.dismissed = True
             self.close()
         elif aid in ACTION_PAUSE:
@@ -178,6 +174,8 @@ class Service:
             api.progress(cur["itemId"], body)
         except ApiError as e:
             utils.log("Final progress report failed: %s" % e.message, xbmc.LOGWARNING)
+        # The FreeX windows wait for this before they read their data again.
+        xbmcgui.Window(utils.HOME_WINDOW).setProperty(utils.SAVED_PROPERTY, cur["itemId"])
         if cur.get("session"):
             try:
                 api.stop_transcode(cur["session"])
@@ -309,7 +307,9 @@ class Service:
 
     def open_button(self, kind):
         label = tr(30070) if kind == "intro" else tr(30071)
-        self.button = SkipButton(label, lambda: self.pressed(kind))
+        media = utils.ADDON_PATH + "/resources/skins/Default/media/"
+        self.button = SkipButton(label, media + ("icon-skip.png" if kind == "intro" else "icon-next.png"),
+                                 lambda: self.pressed(kind))
         self.button_kind = kind
         self.button.show()
 
