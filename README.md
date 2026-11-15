@@ -5,7 +5,7 @@
 <h1 align="center">FreeX for Kodi</h1>
 
 <p align="center">
-  <strong>The Kodi add-on for <a href="https://github.com/FreeX-Studio/freex-media-server">FreeX Media Server</a>.</strong>
+  <strong>The Kodi add-on for <a href="https://github.com/FreeX-Studio/Freex-Media-Server">FreeX Media Server</a>.</strong>
 </p>
 
 FreeX for Kodi (`plugin.video.freex`) brings your FreeX library into Kodi: the home rows, your libraries, collections,
@@ -59,7 +59,7 @@ way round.
 - **Kodi 20 (Nexus) or newer** on any platform (Windows, Linux, macOS, Android, Android TV / Fire TV, LibreELEC,
   CoreELEC, Raspberry Pi)
 - **FreeX Media Server** with stream URLs with an access token
-  ([freex-media-server#2](https://github.com/FreeX-Studio/freex-media-server/pull/2), in the release after 0.21.0) –
+  ([freex-media-server#2](https://github.com/FreeX-Studio/Freex-Media-Server/pull/2), in the release after 0.21.0) –
   the same requirement as FreeX TV
 - Optional: **Up Next** (`service.upnext`) for the Netflix-style pop-up for the next episode; **InputStream
   Adaptive** for converted streams, if Kodi's built-in HLS playback stutters on your device

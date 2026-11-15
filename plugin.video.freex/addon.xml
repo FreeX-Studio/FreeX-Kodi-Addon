@@ -14,7 +14,7 @@
         <description lang="de_DE">Durchsuche die Filme und Serien deines FreeX Media Servers im Design der FreeX-Apps und spiele sie mit Kodis eigenem Player ab. Startseiten-Reihen (Weiterschauen, Als Nächstes, Neu hinzugefügt), Bibliotheken mit Filtern, Sammlungen, Playlists, Merkliste und Suche. Kodi spielt fast jede Datei direkt ab; Gesehen-Status und Fortsetzungspunkte liegen auf dem Server und folgen dir zu FreeX Web und allen anderen FreeX-Apps. Intro überspringen und Up Next für Episoden.</description>
         <platform>all</platform>
         <license>LGPL-3.0-only</license>
-        <website>https://github.com/FreeX-Studio/freex-media-server</website>
+        <website>https://github.com/FreeX-Studio/Freex-Media-Server</website>
         <source>https://github.com/FreeX-Studio/FreeX-Kodi-Addon</source>
         <email>niklas.linz@mirranet.de</email>
         <news>1.1.0: FreeX opens in its own design, as in FreeX TV and FreeX Web (home rows, libraries, detail pages); Kodi's lists remain as an option</news>
