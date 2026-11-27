@@ -1,0 +1,77 @@
+name: Release
+
+# One click in GitHub (Actions › Release › Run workflow): sets the version in
+# addon.xml (with the CHANGELOG section of that version as Kodi's "news"),
+# commits and tags it, packs the add-on and publishes the GitHub release with
+# plugin.video.freex-X.Y.Z.zip, the file Kodi installs.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version X.Y.Z (empty: current version if not released yet, else next patch version)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency: release
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Choose version
+        id: version
+        run: |
+          current=$(python tools/set_version.py current)
+          version="${{ inputs.version }}"
+          version="${version#v}"
+          if [ -z "$version" ]; then
+            if git rev-parse -q --verify "refs/tags/v$current" >/dev/null; then
+              IFS=. read -r major minor patch <<<"$current"
+              version="$major.$minor.$((patch + 1))"
+            else
+              version="$current"
+            fi
+          fi
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::Version must be X.Y.Z, got '$version'"; exit 1; }
+          if git rev-parse -q --verify "refs/tags/v$version" >/dev/null; then echo "::error::v$version already exists"; exit 1; fi
+          if ! grep -q "^## FreeX for Kodi $version\b" CHANGELOG.md; then
+            echo "::warning::CHANGELOG.md has no section '## FreeX for Kodi $version'; the release notes only name the version"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Set version, commit and tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python tools/set_version.py set "$VERSION"
+          if ! git diff --quiet; then
+            git commit -am "FreeX for Kodi $VERSION"
+          fi
+          git tag -a "v$VERSION" -m "FreeX for Kodi $VERSION"
+      - name: Package
+        id: package
+        run: echo "zip=$(./build.sh | tail -n 1)" >> "$GITHUB_OUTPUT"
+      - name: Push and publish
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git push origin HEAD:main "v$VERSION"
+          python tools/set_version.py notes "$VERSION" > notes.md
+          gh release create "v$VERSION" "${{ steps.package.outputs.zip }}" \
+            --title "FreeX for Kodi $VERSION" --notes-file notes.md --verify-tag
+          {
+            echo "### FreeX for Kodi $VERSION"
+            echo "Released [v$VERSION](https://github.com/${{ github.repository }}/releases/tag/v$VERSION) with \`$(basename "${{ steps.package.outputs.zip }}")\`."
+          } >> "$GITHUB_STEP_SUMMARY"

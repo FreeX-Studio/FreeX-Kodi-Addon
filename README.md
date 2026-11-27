@@ -66,7 +66,9 @@ way round.
 
 ## Installation
 
-1. Download `plugin.video.freex-<version>.zip` from the latest build (Jenkins) or build it yourself (see below).
+1. Download `plugin.video.freex-<version>.zip` from the
+   [latest release](https://github.com/FreeX-Studio/FreeX-Kodi-Addon/releases/latest) (or build it yourself, see
+   below).
 2. In Kodi: *Settings → System → Add-ons* → switch on **Unknown sources**.
 3. *Settings → Add-ons → Install from zip file* → choose the zip.
 4. Open *Add-ons → Video add-ons → FreeX* → **Sign in**: enter the server address (e.g. `192.168.1.10`, the port
@@ -140,6 +142,22 @@ other skins fall back to `font13` there.
 
 Strings are in `resources/language/resource.language.*/strings.po`; IDs 30000–30999 for the add-on, 32000–32999
 for the settings.
+
+## Releases
+
+GitHub Actions builds the add-on:
+
+- **Build** (`.github/workflows/build.yml`) runs on every push to `main` and every pull request: lint, a check that
+  the code runs on Kodi 20's Python 3.8, a check that the generated window layouts are up to date, and the zip,
+  attached to the run as an artifact for testing.
+- **Release** (`.github/workflows/release.yml`) is started by hand: *Actions → Release → Run workflow*, enter the
+  version (`X.Y.Z`; empty: the version in `addon.xml` if it is not released yet, otherwise the next patch version).
+  It writes the version into `addon.xml`, fills Kodi's *news* from the `## FreeX for Kodi X.Y.Z` section of
+  `CHANGELOG.md`, commits and tags `vX.Y.Z` on `main`, and publishes the GitHub release with the zip and that
+  section as release notes.
+
+So for a release: add the section to `CHANGELOG.md`, push, run *Release*. `python3 tools/set_version.py` does the
+version part locally as well.
 
 ## License
 

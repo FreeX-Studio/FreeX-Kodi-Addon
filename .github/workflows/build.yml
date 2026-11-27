@@ -1,0 +1,42 @@
+name: Build
+
+# Every push to main and every pull request: checks the code and packs the
+# add-on. The zip is attached to the run (Summary › Artifacts) for testing;
+# releases are made with the Release workflow.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Tools
+        run: pip install pyflakes vermin
+      - name: Lint
+        run: python -m pyflakes plugin.video.freex tools
+      - name: Runs on the Python of Kodi 20 (3.8)
+        run: vermin --no-tips --violations --target=3.8- plugin.video.freex
+      - name: Window layouts up to date
+        # The XML in resources/skins/Default/1080i is generated; change
+        # tools/make_windows.py and run it instead of editing the XML.
+        run: |
+          python tools/make_windows.py
+          git diff --exit-code -- plugin.video.freex/resources/skins
+      - name: Package
+        id: package
+        run: |
+          zip=$(./build.sh | tail -n 1)
+          echo "zip=$zip" >> "$GITHUB_OUTPUT"
+          echo "name=$(basename "$zip" .zip)-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.name }}
+          path: ${{ steps.package.outputs.zip }}
+          if-no-files-found: error
